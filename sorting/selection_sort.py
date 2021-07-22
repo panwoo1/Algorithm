@@ -1,9 +1,11 @@
 def get_max_index(A, i):
-    for j in range(i):
-        max_index = 0
-        if(A[i] > A[max_index]):
-            max_index = i
+    max_index = 0
+    for j in range(i+1):
+        if(A[j] > A[max_index]):
+            max_index = j
     return max_index
+
+# 가장 큰 값부터 차례대로 찾는 방식(작은 수부터 찾을 수 있음)
 
 
 def selection_sort(A, n):
@@ -14,6 +16,6 @@ def selection_sort(A, n):
         A[i], A[m] = A[m], A[i]
 
 
-A = [3, 1, 2, 4]
-selection_sort(A, len(A)-1)
+A = [12, 4, 9, 10, 21, 3, 8, 0, 7, 9, 6]
+selection_sort(A, len(A))
 print(A)
