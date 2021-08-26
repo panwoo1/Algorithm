@@ -8,6 +8,8 @@ def is_palindrome(word):
 
 '''
 수행시간 점화식
-T(n) = T(n-2) + c
-T(n) = T(n/2) + c 둘중 하나
+T(n) = T(n-2) + c       ##3아마 이거인듯
+T(n) = T(n/2) + c    
+
+둘중 하나
 '''
