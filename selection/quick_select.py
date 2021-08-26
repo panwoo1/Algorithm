@@ -14,3 +14,8 @@ def Quick_Select(L, k):
         return Quick_Select(B, k - len(A) - len(M))
     else:
         return p
+
+L = list(map(int, input().split()))
+
+print(Quick_Select(L, len(L)/2))
+print(sorted(L))
