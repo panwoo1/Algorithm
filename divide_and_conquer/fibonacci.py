@@ -6,6 +6,15 @@ def power2(a, n):  # 이중 재귀 호출로 작성하기
     else:
         return power2(a, n//2)*power2(a, n//2)
 
+def calculate_matrix(A, B):
+    C = [[0, 0], [0, 0]]
+    C[0][0] = A[0][0]*B[0][0] + A[0][1]*B[1][0]
+    C[0][1] = A[0][0]*B[0][1] + A[0][1]*B[1][1]
+    C[1][0] = A[1][0]*B[0][0] + A[1][1]*B[1][0]
+    C[1][1] = A[1][0]*B[0][1] + A[1][1]*B[1][1]
+
+    return C
+
 
 def fibonacci1(n):
     if(n <= 1):
@@ -13,8 +22,18 @@ def fibonacci1(n):
     return fibonacci1(n-1) + fibonacci1(n-2)
 
 
-def fibonacci2(n):
-    pass
+def fibonacci2(A, n):
+    
+    if(n > 1):
+        A = fibonacci2(A, n//2)
+        A = calculate_matrix(A, A)
+
+        if(n % 2 == 1):
+            F1 = [[1, 1], [1, 0]]
+            A = calculate_matrix(A, F1)
+
+    return A
+
 
 
 def fibonacci3(n):
@@ -46,4 +65,7 @@ def fibonacci5(n):
 
 
 n = int(input())
-print(fibonacci1(n), fibonacci2(n), fibonacci3(n), fibonacci4(n), fibonacci5(n))
+A = [[1, 1], [1, 0]]
+A = fibonacci2(A, n)
+print(fibonacci1(n), fibonacci3(n), fibonacci4(n), fibonacci5(n))
+print(A[0][1])
