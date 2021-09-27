@@ -1,21 +1,15 @@
 def find_median_five(A):
-	S, M, L = [], [], []
-	p = A[0]
-	for a in A:
-		if(a < p):
-			S.append(a)
-		elif(a == p):
-			M.append(a)
-		else:
-			L.append(a)
-	
-	if(len(S) >= len(A)/2):
-		return find_median_five(S)
-	elif(len(S) + len(M) < len(A)/2):
-		return find_median_five(L)
+	if(len(A) % 2 != 0):
+		while(len(A)!=1):
+			A.pop(A.index(max(A)))
+			A.pop(A.index(min(A)))
+		return A[0]
 	else:
-		return p
-			
+		while(len(A)!=2):
+			A.pop(A.index(max(A)))
+			A.pop(A.index(min(A)))
+		return A[0]
+	
 	
 def MoM(A, k): # L의 값 중에서 k번째로 작은 수 리턴
 	if len(A) == 1: # no more recursion
@@ -39,11 +33,11 @@ def MoM(A, k): # L의 값 중에서 k번째로 작은 수 리턴
 			M.append(v)
 
 	if (len(S) >= k): return MoM(S, k)
-	elif(len(S) + len(M) < k) : return MoM(L, k - len(S) - len(M))
+	elif (len(S) + len(M) < k): return MoM(L, k - len(S) - len(M))
 	else: return mom
 
 # n과 k를 입력의 첫 줄에서 읽어들인다
-# n개의 정수를 읽어들인다. (split 이용 + int로 변환)
 n, k = map(int, input().split())
+# n개의 정수를 읽어들인다. (split 이용 + int로 변환)
 A = list(map(int, input().split()))
 print(MoM(A, k))
